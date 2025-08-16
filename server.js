@@ -196,7 +196,7 @@ app.post('/users', (req, res) => {
         return res.status(400).json({
             error: "User with id ${newUser.id} already exists."
         })
-    } users.find(newUser)
+    } 
     users.push(newUser);
     // In a real application, you would save the new user to a database here
     res.status(201).json({

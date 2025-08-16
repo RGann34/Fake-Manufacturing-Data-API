@@ -194,7 +194,7 @@ app.post('/users', (req, res) => {
     const existingUser = users.some(user => user.id === newUser.id);
     if (existingUser) {
         return res.status(400).json({
-            error: "User with id ${newUser.id} already exists."
+            error: `User with id ${newUser.id} already exists.`
         })
     } 
     users.push(newUser);

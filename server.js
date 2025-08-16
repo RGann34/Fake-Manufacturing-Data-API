@@ -6,23 +6,8 @@ app.use(express.json()); // Middleware to parse JSON bodies
 app.use(express.static('public'));
 
 // In-Memory Storage
-let products = [];
-let orders = [];
-
-// Get Endpoint Users
-app.get('/users', (req, res) => {
-    res.json(
-        [
-            { id: 1, name: "Alice" },
-            { id: 2, name: "Bob" }
-        ]
-    );
-});
-
-// Get Endpoint Products
-app.get('/products', (req, res) => {
-    res.json(
-        [
+let products = [
+    
             {
                 id: 1,
                 name: "Servo Motor X200",
@@ -83,50 +68,9 @@ app.get('/products', (req, res) => {
                 description: "High-precision ball bearing for rotating shafts.",
                 image: "https://example.com/images/bearing.jpg"
             }
-        ]
-    );
-});
-//adding comit to submit commit
-// Get Endpoint Customers
-app.get('/customers', (req, res) => {
-    res.json([
-        {
-            id: 101,
-            name: "Acme Corp",
-            contact_name: "John Doe",
-            email: "john.doe@acme.com",
-            phone: "+1-555-1234",
-            address: "123 Industrial Way, Houston, TX",
-            industry: "Automotive",
-            account_status: "Active"
-        },
-        {
-            id: 102,
-            name: "Globex Industries",
-            contact_name: "Jane Smith",
-            email: "jane.smith@globex.com",
-            phone: "+1-555-5678",
-            address: "456 Enterprise Rd, Detroit, MI",
-            industry: "Aerospace",
-            account_status: "Active"
-        },
-        {
-            id: 103,
-            name: "Initech Solutions",
-            contact_name: "Peter Gibbons",
-            email: "pgibbons@initech.com",
-            phone: "+1-555-2468",
-            address: "789 Software Blvd, Austin, TX",
-            industry: "Technology",
-            account_status: "On Hold"
-        }
-    ]);
-});
-
-// Get Endpoint Orders
-app.get('/orders', (req, res) => {
-    res.json([
-        {
+];
+let orders = [
+    {
             id: 5001,
             customer_id: 101,
             order_date: "2025-08-01",
@@ -184,12 +128,68 @@ app.get('/orders', (req, res) => {
                 }
             ]
         }
-    ]);
+];
+let users = [
+            { id: 1, name: "Alice" },
+            { id: 2, name: "Bob" }
+        ];
+let customers = [
+     {
+            id: 101,
+            name: "Acme Corp",
+            contact_name: "John Doe",
+            email: "john.doe@acme.com",
+            phone: "+1-555-1234",
+            address: "123 Industrial Way, Houston, TX",
+            industry: "Automotive",
+            account_status: "Active"
+        },
+        {
+            id: 102,
+            name: "Globex Industries",
+            contact_name: "Jane Smith",
+            email: "jane.smith@globex.com",
+            phone: "+1-555-5678",
+            address: "456 Enterprise Rd, Detroit, MI",
+            industry: "Aerospace",
+            account_status: "Active"
+        },
+        {
+            id: 103,
+            name: "Initech Solutions",
+            contact_name: "Peter Gibbons",
+            email: "pgibbons@initech.com",
+            phone: "+1-555-2468",
+            address: "789 Software Blvd, Austin, TX",
+            industry: "Technology",
+            account_status: "On Hold"
+        }
+];
+
+// Get Endpoint Users
+app.get('/users', (req, res) => {
+    res.json(users);
+});
+
+// Get Endpoint Products
+app.get('/products', (req, res) => {
+    res.json(products);
+});
+
+// Get Endpoint Customers
+app.get('/customers', (req, res) => {
+    res.json(customers);
+});
+
+// Get Endpoint Orders
+app.get('/orders', (req, res) => {
+    res.json(orders);
 });
 
 // Post Endpoint Users
 app.post('/users', (req, res) => {
     const newUser = req.body;
+    users.push(newUser);
     // In a real application, you would save the new user to a database here
     res.status(201).json({
         message: 'User created successfully',
@@ -218,6 +218,7 @@ app.post('/products', (req, res) => {
 // Post Endpoint Customers
 app.post('/customers', (req, res) => {
     const newCustomer = req.body;
+    customers.push(newCustomer);
     // In a real application, you would save the new customer to a database here
     res.status(201).json({
         message: 'Customer created successfully',

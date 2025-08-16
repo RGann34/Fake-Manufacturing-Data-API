@@ -5,6 +5,10 @@ const port = process.env.PORT || 3000;
 app.use(express.json()); // Middleware to parse JSON bodies
 
 
+// In-Memory Storage
+let products = [];
+let orders = [];
+
 // Get Endpoint Users
 app.get('/users', (req, res) => {
     res.json(
@@ -204,7 +208,7 @@ app.post('/products', (req, res) => {
     }
     // In a real system, you'd save this to a DB
     newProduct.id = Math.floor(Math.random() * 10000); // Simulate ID assignment
-
+    products.push(newProduct);
     res.status(201).json({
         message: "Product created successfully",
         product: newProduct
@@ -241,11 +245,15 @@ app.post('/orders', (req, res) => {
   newOrder.order_date = newOrder.order_date || new Date().toISOString().split("T")[0];
   newOrder.status = newOrder.status || "Pending";
   newOrder.total_amount = totalAmount;
-
+  orders.push(newOrder);
   res.status(201).json({
     message: "Order created successfully",
     order: newOrder
   });
+});
+
+app.all('*', (req, res) => {
+  res.status(405).json({ error: `Method ${req.method} not allowed` });
 });
 
 

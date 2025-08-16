@@ -264,8 +264,9 @@ All unsupported HTTP methods return **405 Method Not Allowed**:
 ### Notes
 
 * **In-Memory Storage:** Data is not persisted. Restarting the server will reset all POSTed data.
-* **CORS:** Only requests from your allowed domains (e.g., `*.fuuz.app`) can access this API.
+* **CORS:** Not implemented yet. Will be added later to allow only requests from specific domains (e.g., `*.fuuz.app` or `@fuuz.com` emails).
 * **Port:** The server listens on `process.env.PORT || 3000`.
+
 
 ---
 
@@ -290,3 +291,4 @@ curl -X POST https://fake-manufacturing-data-api.onrender.com/products \
 ### License
 
 MIT License – Free to use for internal demos or learning.
+

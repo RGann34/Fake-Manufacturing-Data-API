@@ -252,12 +252,6 @@ app.post('/orders', (req, res) => {
   });
 });
 
-app.all('*', (req, res) => {
-  res.status(405).json({ error: `Method ${req.method} not allowed` });
-});
-
-
-
 // Start the server
 
 app.listen(port, () => {

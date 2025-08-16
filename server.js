@@ -86,7 +86,7 @@ app.get('/products', (req, res) => {
         ]
     );
 });
-
+//adding comit to submit commit
 // Get Endpoint Customers
 app.get('/customers', (req, res) => {
     res.json([

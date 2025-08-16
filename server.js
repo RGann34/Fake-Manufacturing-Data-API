@@ -189,6 +189,14 @@ app.get('/orders', (req, res) => {
 // Post Endpoint Users
 app.post('/users', (req, res) => {
     const newUser = req.body;
+
+    // Check for duplicate ID
+    const existingUser = users.some(user=> user.id === newUser.id);
+    if(existingUser){
+        return res.status(400).json({
+            error: "User with id ${newUser.id} already exists."
+        })
+    }    users.find(newUser)
     users.push(newUser);
     // In a real application, you would save the new user to a database here
     res.status(201).json({
@@ -206,6 +214,12 @@ app.post('/products', (req, res) => {
             error: 'PMissing Required fields: name, price, sku'
         });
     }
+    const existingProduct = products.some(product=> product.id === newProduct.id || product.sku === newProduct.sku || product.part_number === newProduct.part_number)
+    if(existingProduct){
+        return res.status(400).json({
+            error: "product already exist."
+        })
+    }
     // In a real system, you'd save this to a DB
     newProduct.id = Math.floor(Math.random() * 10000); // Simulate ID assignment
     products.push(newProduct);
@@ -218,6 +232,18 @@ app.post('/products', (req, res) => {
 // Post Endpoint Customers
 app.post('/customers', (req, res) => {
     const newCustomer = req.body;
+
+  // Check for duplicate ID or email
+    const existingCustomer = customers.some(customer =>
+        customer.id === newCustomer.id ||
+        customer.email === newCustomer.email
+    );  
+    if (existingCustomer) {
+        return res.status(400).json({
+            error: "Customer already exists."
+        });
+    }
+
     customers.push(newCustomer);
     // In a real application, you would save the new customer to a database here
     res.status(201).json({
@@ -233,6 +259,12 @@ app.post('/orders', (req, res) => {
   if (!newOrder.customer_id || !Array.isArray(newOrder.items) || newOrder.items.length === 0) {
     return res.status(400).json({ error: "Missing customer_id or items" });
   }
+
+   // Check for duplicate order ID
+    const existingOrder = orders.some(order => order.id === newOrder.id);
+    if (existingOrder) {
+        return res.status(400).json({ error: "Order ID already exists." });
+    }
 
   // Optional: Calculate totals
   let totalAmount = 0;

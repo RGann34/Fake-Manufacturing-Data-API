@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fake Manufacturing Data API</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+      line-height: 1.6;
+      background: #f9f9f9;
+      color: #333;
+    }
+    h1, h2, h3 {
+      color: #2c3e50;
+    }
+    code {
+      background: #eee;
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+    pre {
+      background: #eee;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    a {
+      color: #2980b9;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    hr {
+      margin: 30px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Fake Manufacturing Data API</h1>
+  <p>This API provides endpoints for Users, Products, Customers, and Orders. Data is stored in-memory for demo purposes.</p>
+
+  <h2>Base URL</h2>
+  <p><code>https://fake-manufacturing-data-api.onrender.com</code></p>
+
+  <hr>
+
+  <h2>Endpoints</h2>
+
+  <h3>Users</h3>
+  <ul>
+    <li><strong>GET /users</strong> - Returns a list of users</li>
+    <li><strong>POST /users</strong> - Add a new user. Required fields: <code>name</code></li>
+  </ul>
+
+  <h3>Products</h3>
+  <ul>
+    <li><strong>GET /products</strong> - Returns a list of products</li>
+    <li><strong>POST /products</strong> - Add a new product. Required fields: <code>name</code>, <code>price</code>, <code>sku</code></li>
+  </ul>
+
+  <h3>Customers</h3>
+  <ul>
+    <li><strong>GET /customers</strong> - Returns a list of customers</li>
+    <li><strong>POST /customers</strong> - Add a new customer</li>
+  </ul>
+
+  <h3>Orders</h3>
+  <ul>
+    <li><strong>GET /orders</strong> - Returns a list of orders</li>
+    <li><strong>POST /orders</strong> - Add a new order. Required fields: <code>customer_id</code>, <code>items</code></li>
+  </ul>
+
+  <hr>
+  <p>See the <a href="https://github.com/RGann34/Fake-Manufacturing-Data-API">GitHub README</a> for full details and examples.</p>
+</body>
+</html>
